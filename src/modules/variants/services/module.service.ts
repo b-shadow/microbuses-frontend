@@ -34,3 +34,9 @@ export async function updateVariant(
 export async function deleteVariant(variantId: string) {
   return api.delete(`/variants/${variantId}`)
 }
+
+export type LineRowLite = { id: string | number; id_linea?: number; nombre_linea?: string; color_linea?: string }
+
+export async function listLinesLite() {
+  return api.get<LineRowLite[]>('/lineas')
+}

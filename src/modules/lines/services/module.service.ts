@@ -5,7 +5,6 @@ export type LineRow = {
   id_linea?: number
   nombre_linea?: string
   color_linea?: string
-  imagen_micro?: string | null
   is_active: boolean
 }
 
@@ -20,14 +19,13 @@ export async function getLine(lineId: string) {
 export async function createLine(payload: {
   nombre_linea?: string
   color_linea?: string
-  imagen_micro?: string | null
 }) {
   return api.post<LineRow>('/lineas', payload)
 }
 
 export async function updateLine(
   lineId: string,
-  payload: Partial<Pick<LineRow, 'nombre_linea' | 'color_linea' | 'imagen_micro' | 'is_active'>>,
+  payload: Partial<Pick<LineRow, 'nombre_linea' | 'color_linea' | 'is_active'>>,
 ) {
   return api.patch<LineRow>(`/lineas/${lineId}`, payload)
 }
