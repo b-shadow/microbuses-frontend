@@ -45,3 +45,7 @@ export async function updateRoute(
 ) {
   return api.patch<RouteRow>(`/linea-ruta/${routeId}`, payload)
 }
+
+export async function getMapLines() {
+  return api.get<any[]>('/linea-ruta/map-lines')
+}
