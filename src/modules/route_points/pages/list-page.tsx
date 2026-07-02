@@ -1,4 +1,4 @@
-﻿import { FormEvent, useEffect, useMemo, useState } from 'react'
+import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { createRoutePoint, deleteRoutePoint, listRoutePoints, listRoutesLite, updateRoutePoint } from '../services/module.service'

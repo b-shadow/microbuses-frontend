@@ -1,4 +1,4 @@
-﻿import { FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { updateRoutePoint } from '../services/module.service'

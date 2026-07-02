@@ -9,6 +9,7 @@ export type DriverRow = {
   phone: string
   license_category: string
   is_active: boolean
+  created_at: string | null
 }
 
 export async function listDrivers(approvalStatus?: DriverRow['approval_status']) {
@@ -27,6 +28,8 @@ export async function createDriver(payload: {
   full_name: string
   phone: string
   license_category: string
+  birth_date?: string
+  sex?: string
 }) {
   return api.post<DriverRow>('/drivers', payload)
 }
@@ -39,6 +42,10 @@ export async function rejectDriver(driverId: string, reason?: string) {
   return api.post<DriverRow>(`/drivers/${driverId}/reject`, { reason })
 }
 
-export async function updateDriver(driverId: string, payload: Partial<Pick<DriverRow, 'full_name' | 'phone' | 'license_category' | 'is_active'>>) {
+export async function updateDriver(driverId: string, payload: Partial<Pick<DriverRow, 'full_name' | 'phone' | 'license_category' | 'is_active'> & { birth_date: string; sex: string }>) {
   return api.patch<DriverRow>(`/drivers/${driverId}`, payload)
+}
+
+export async function deleteDriver(driverId: string) {
+  return api.delete<void>(`/drivers/${driverId}`)
 }

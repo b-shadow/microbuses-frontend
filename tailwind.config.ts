@@ -5,6 +5,10 @@ const config: Config = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Geist Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Geist"', '"Geist Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+      },
       colors: {
         brand: {
           50: '#f0f9ff',

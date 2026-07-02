@@ -1,4 +1,4 @@
-﻿import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { createRoute, listLinesLite } from '../services/module.service'

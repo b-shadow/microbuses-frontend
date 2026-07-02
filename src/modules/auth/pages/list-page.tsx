@@ -30,113 +30,195 @@ export function LoginPage() {
   }
 
   return (
-    <div className='min-h-screen bg-slate-100'>
-      <div className='grid min-h-screen grid-cols-1 lg:grid-cols-2'>
-        <section
-          className='relative hidden overflow-hidden lg:flex'
-          style={{
-            backgroundImage:
-              "linear-gradient(120deg, rgba(230,238,250,.95), rgba(225,233,247,.72)), url('/assets/images/img-login-admin.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className='absolute inset-0 bg-gradient-to-t from-slate-900/25 to-transparent' />
-          <div className='relative z-10 flex h-full w-full flex-col justify-between p-14'>
-            <div className='max-w-xl'>
-              <h1 className='text-6xl font-black leading-tight text-slate-900'>
-                Sistema de Control
-                <br />
-                <span className='text-sky-600'>de Microbuses</span>
-              </h1>
-              <p className='mt-8 text-3xl leading-snug text-slate-700'>
-                Plataforma administrativa para la gestion y control eficiente de tu flota.
-              </p>
+    <div className='min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-teal-100'>
+      <div className='flex min-h-screen items-center justify-center px-4 py-8 sm:px-6 lg:px-8'>
+        <div className='w-full max-w-6xl'>
+          <div className='grid grid-cols-1 overflow-hidden rounded-2xl bg-white shadow-2xl lg:grid-cols-2'>
+            
+            {/* Panel Izquierdo - Información */}
+            <div className='relative bg-gradient-to-br from-teal-700 via-teal-800 to-teal-900 p-8 lg:p-12'>
+              <div className='absolute inset-0 bg-teal-950 opacity-20'></div>
+              
+              <div className='relative z-10 flex h-full flex-col'>
+                <div className='mb-8'>
+                  <div className='mb-6 flex items-center gap-3'>
+                    <img src='/favicon.png' alt='RUTEO Logo' className='h-14 w-14 rounded-xl border-2 border-cyan-400 shadow-md object-cover' />
+                    <h1 className='text-3xl font-bold text-cyan-300 tracking-wider font-display'>RUTEO</h1>
+                  </div>
+                  <h2 className='mb-4 text-4xl font-extrabold leading-tight text-white lg:text-5xl font-display'>
+                    Sistema de Información Geográfica
+                  </h2>
+                  <p className='text-lg leading-relaxed text-teal-100'>
+                    Para consultar, gestionar y calcular rutas de microbuses en Santa Cruz de la Sierra.
+                  </p>
+                </div>
+
+                <div className='mt-auto space-y-4'>
+                  <FeatureCard 
+                    icon={ShieldCheck} 
+                    title='Consultar Rutas' 
+                    description='Acceso a información de rutas y recorridos'
+                  />
+                  <FeatureCard 
+                    icon={Activity} 
+                    title='Gestión de Microbuses' 
+                    description='Administración completa de flotas y líneas'
+                  />
+                  <FeatureCard 
+                    icon={Settings} 
+                    title='Cálculo de Rutas' 
+                    description='Sistema inteligente de planificación de trayectos'
+                  />
+                </div>
+              </div>
             </div>
-            <div className='space-y-6 pb-4'>
-              <FeatureItem icon={ShieldCheck} title='Seguridad' text='Acceso seguro y controlado' />
-              <FeatureItem icon={Activity} title='Gestion en tiempo real' text='Monitorea tu flota al instante' />
-              <FeatureItem icon={Settings} title='Administracion eficiente' text='Herramientas disenadas para operar mejor' />
+
+            {/* Panel Derecho - Formulario de Login */}
+            <div className='flex items-center justify-center p-8 lg:p-12'>
+              <div className='w-full max-w-md'>
+                <div className='mb-8 text-center'>
+                  <div className='mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-teal-600 shadow-lg'>
+                    <Lock className='h-8 w-8 text-white' />
+                  </div>
+                  <h3 className='mb-2 text-3xl font-bold text-gray-900 font-display'>Iniciar Sesión</h3>
+                  <p className='text-sm text-gray-600'>
+                    Ingresa tus credenciales para acceder al sistema
+                  </p>
+                </div>
+
+                <form className='space-y-6' onSubmit={onSubmit}>
+                  {/* Campo Email */}
+                  <div>
+                    <label htmlFor='email' className='mb-2 block text-sm font-medium text-gray-900'>
+                      Correo Electrónico
+                    </label>
+                    <div className='relative'>
+                      <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5'>
+                        <Mail className='h-5 w-5 text-gray-400' />
+                      </div>
+                      <input
+                        type='email'
+                        id='email'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 pl-11 text-sm text-gray-900 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20'
+                        placeholder='nombre@ejemplo.com'
+                        required
+                        autoComplete='username'
+                      />
+                    </div>
+                  </div>
+
+                  {/* Campo Contraseña */}
+                  <div>
+                    <label htmlFor='password' className='mb-2 block text-sm font-medium text-gray-900'>
+                      Contraseña
+                    </label>
+                    <div className='relative'>
+                      <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5'>
+                        <Lock className='h-5 w-5 text-gray-400' />
+                      </div>
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        id='password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 pl-11 pr-11 text-sm text-gray-900 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20'
+                        placeholder='••••••••'
+                        required
+                        autoComplete='current-password'
+                      />
+                      <button
+                        type='button'
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        className='absolute inset-y-0 right-0 flex items-center pr-3.5 text-gray-400 transition hover:text-gray-600'
+                        aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                      >
+                        {showPassword ? <EyeOff className='h-5 w-5' /> : <Eye className='h-5 w-5' />}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Checkbox Recordarme */}
+                  <div className='flex items-center justify-between'>
+                    <div className='flex items-start'>
+                      <div className='flex h-5 items-center'>
+                        <input
+                          id='remember'
+                          type='checkbox'
+                          className='h-4 w-4 rounded border-gray-300 bg-gray-50 text-cyan-600 focus:ring-2 focus:ring-cyan-500'
+                        />
+                      </div>
+                      <label htmlFor='remember' className='ml-2 text-sm text-gray-600'>
+                        Recordarme
+                      </label>
+                    </div>
+                    <a href='#' className='text-sm font-medium text-cyan-600 hover:underline'>
+                      ¿Olvidaste tu contraseña?
+                    </a>
+                  </div>
+
+                  {/* Mensaje de Error */}
+                  {error && (
+                    <div className='rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800'>
+                      <div className='flex items-center gap-2'>
+                        <svg className='h-5 w-5 flex-shrink-0' fill='currentColor' viewBox='0 0 20 20'>
+                          <path fillRule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z' clipRule='evenodd' />
+                        </svg>
+                        <span>{error}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Botón de Envío */}
+                  <button
+                    type='submit'
+                    disabled={loading}
+                    className='w-full rounded-lg bg-gradient-to-r from-cyan-500 to-teal-600 px-5 py-3 text-center text-sm font-medium text-white shadow-lg transition hover:from-cyan-600 hover:to-teal-700 focus:outline-none focus:ring-4 focus:ring-cyan-300 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:from-cyan-500 disabled:hover:to-teal-600'
+                  >
+                    {loading ? (
+                      <span className='flex items-center justify-center gap-2'>
+                        <svg className='h-5 w-5 animate-spin' viewBox='0 0 24 24' fill='none'>
+                          <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
+                          <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z' />
+                        </svg>
+                        Ingresando...
+                      </span>
+                    ) : (
+                      'Iniciar Sesión'
+                    )}
+                  </button>
+                </form>
+
+                <div className='mt-8 text-center text-xs text-gray-500'>
+                  © {new Date().getFullYear()} Sistema de Información Geográfica - Santa Cruz de la Sierra
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-
-        <section className='flex items-center justify-center px-4 py-12 sm:px-8'>
-          <div className='w-full max-w-xl rounded-3xl border border-slate-200 bg-white p-8 shadow-xl sm:p-10'>
-            <div className='mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-sky-100'>
-              <Bus className='h-10 w-10 text-sky-600' />
-            </div>
-            <h2 className='text-center text-5xl font-extrabold text-slate-900'>Acceso Administrador</h2>
-            <p className='mt-2 text-center text-2xl text-slate-600'>Inicia sesion para continuar</p>
-
-            <form className='mt-8 space-y-4' onSubmit={onSubmit}>
-              <div className='relative'>
-                <Mail className='pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500' />
-                <input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className='w-full rounded-xl border border-slate-300 bg-slate-50 py-4 pl-12 pr-4 text-xl text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200'
-                  placeholder='Email'
-                  autoComplete='username'
-                />
-              </div>
-
-              <div className='relative'>
-                <Lock className='pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500' />
-                <input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className='w-full rounded-xl border border-slate-300 bg-slate-50 py-4 pl-12 pr-12 text-xl text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200'
-                  placeholder='Contrasena'
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete='current-password'
-                />
-                <button
-                  type='button'
-                  onClick={() => setShowPassword((prev) => !prev)}
-                  className='absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-2 text-slate-500 transition hover:bg-slate-200/70 hover:text-slate-700'
-                  aria-label={showPassword ? 'Ocultar contrasena' : 'Mostrar contrasena'}
-                >
-                  {showPassword ? <EyeOff className='h-5 w-5' /> : <Eye className='h-5 w-5' />}
-                </button>
-              </div>
-
-              {error ? <p className='text-base text-red-600'>{error}</p> : null}
-              <button
-                disabled={loading}
-                className='mt-2 w-full rounded-xl bg-sky-600 px-4 py-4 text-2xl font-semibold text-white transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-60'
-              >
-                {loading ? 'Ingresando...' : 'Ingresar'}
-              </button>
-            </form>
-
-            <p className='mt-8 text-center text-base text-slate-500'>
-              (c) {new Date().getFullYear()} Sistema de Control de Microbuses
-            </p>
-          </div>
-        </section>
+        </div>
       </div>
     </div>
   )
 }
 
-function FeatureItem({
+function FeatureCard({
   icon: Icon,
   title,
-  text,
+  description,
 }: {
   icon: ComponentType<{ className?: string }>
   title: string
-  text: string
+  description: string
 }) {
   return (
-    <div className='flex items-start gap-4'>
-      <div className='flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sky-100'>
-        <Icon className='h-6 w-6 text-sky-700' />
+    <div className='flex items-start gap-4 rounded-xl bg-white bg-opacity-10 p-4 transition hover:bg-opacity-15'>
+      <div className='flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white bg-opacity-20'>
+        <Icon className='h-5 w-5 text-white' />
       </div>
       <div>
-        <p className='text-3xl font-bold text-slate-800'>{title}</p>
-        <p className='text-2xl text-slate-700'>{text}</p>
+        <h3 className='mb-1 font-semibold text-white font-display'>{title}</h3>
+        <p className='text-sm text-teal-100'>{description}</p>
       </div>
     </div>
   )
