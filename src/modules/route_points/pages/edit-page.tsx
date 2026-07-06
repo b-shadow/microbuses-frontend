@@ -32,7 +32,7 @@ export function RoutePointsEditPage() {
         if (row) {
           setIdPunto(String(row.id_punto ?? ''))
           setIdPuntoDest(String(row.id_punto_dest ?? ''))
-          setOrden(String(row.orden ?? row.sequence ?? '1'))
+          setOrden(String(row.orden ?? '1'))
           setDistancia(row.distancia ? String(row.distancia) : '')
           setTiempo(row.tiempo ? String(row.tiempo) : '')
         } else {

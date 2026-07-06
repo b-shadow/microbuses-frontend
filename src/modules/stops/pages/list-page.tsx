@@ -257,7 +257,7 @@ export function StopsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                {visible.map((x) => (
+                {filtered.map((x) => (
                   <tr key={String(x.id)} className={`transition-colors hover:bg-slate-50/70 dark:hover:bg-slate-800/40 ${!x.is_active ? 'opacity-60' : ''}`}>
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
@@ -290,7 +290,7 @@ export function StopsPage() {
                     </td>
                   </tr>
                 ))}
-                {visible.length === 0 && (
+                {filtered.length === 0 && (
                   <tr><td colSpan={4} className="px-5 py-12 text-center">
                     <div className="flex flex-col items-center gap-2">
                       <MapPin className="h-8 w-8 text-slate-300 dark:text-slate-600" />
@@ -304,7 +304,7 @@ export function StopsPage() {
             </table>
           </div>
           <div className="flex items-center justify-between border-t border-slate-100 bg-slate-50/50 px-5 py-3 dark:border-slate-800 dark:bg-slate-800/30">
-            <span className="text-xs text-slate-500 dark:text-slate-400">{visible.length} puntos visibles</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">{filtered.length} puntos visibles</span>
           </div>
         </div>
       )}
